@@ -10,6 +10,12 @@ Route::resource('alumnos', AlumnoController::class)->middleware('auth'); //Prote
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['es', 'en', 'fr'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Gestión de Alumnos') }}
+            {{ __('messages.title') }}
         </h2>
     </x-slot>
 
@@ -17,16 +17,16 @@
 
                 <div class="mb-6">
                     <a href="{{ route('alumnos.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring ring-blue-300 disabled:opacity-25 transition ease-in-out duration-150">
-                        + Añadir Nuevo Alumno
+                        {{ __('messages.add_student') }}
                     </a>
                 </div>
 
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('messages.name') }}</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('messages.actions') }}</th>
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -35,13 +35,13 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $alumno->nombre }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $alumno->email }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                <a href="{{ route('alumnos.edit', $alumno) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Editar</a>
+                                <a href="{{ route('alumnos.edit', $alumno) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">{{ __('messages.edit') }}</a>
 
                                 <form action="{{ route('alumnos.destroy', $alumno) }}" method="POST" class="inline" id="delete-form-{{ $alumno->id }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="button" onclick="confirmDelete({{ $alumno->id }})" class="text-red-600 hover:text-red-900">
-                                        Eliminar
+                                        {{ __('messages.delete') }}
                                     </button>
                                 </form>
                             </td>

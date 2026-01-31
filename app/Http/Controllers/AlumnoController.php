@@ -35,14 +35,14 @@ class AlumnoController extends Controller
             'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:alumnos,email',
             'edad' => 'required|integer|min:1',
-        ]);
 
+        ]);
         //Creamos el alumno en la base de datos
         Alumno::create($request->all());
 
         //Redirigimos con un mensaje de confirmación
         return redirect()->route('alumnos.index')
-            ->with('success', 'Alumno creado correctamente.');
+            ->with('success', __('messages.success_create'));
 
     }
 
@@ -74,9 +74,11 @@ class AlumnoController extends Controller
             'edad' => 'required|integer|min:1',
         ]);
 
+
         $alumno->update($request->all());
 
-        return redirect()->route('alumnos.index')->with('success', 'Alumno actualizado correctamente.');
+        return redirect()->route('alumnos.index')
+            ->with('success', __('messages.success_update'));
     }
 
     /**
