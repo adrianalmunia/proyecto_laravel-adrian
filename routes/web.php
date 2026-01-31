@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumnoController;
+
+// Usamos resource para que cree todas las rutas del CRUD de golpe
+Route::resource('alumnos', AlumnoController::class)->middleware('auth'); //Protegemos las rutas: Solo los usuarios logueados pueden ver las rutas
 
 Route::get('/', function () {
     return view('welcome');
