@@ -21,7 +21,7 @@ class AlumnoController extends Controller
      */
     public function create()
     {
-        //
+        return view('alumnos.create');
     }
 
     /**
@@ -43,6 +43,7 @@ class AlumnoController extends Controller
         //Redirigimos con un mensaje de confirmación
         return redirect()->route('alumnos.index')
             ->with('success', 'Alumno creado correctamente.');
+
     }
 
     /**
