@@ -57,24 +57,34 @@ class AlumnoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Alumno $alumno)
     {
-        //
+        return view('alumnos.edit', compact('alumno'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Alumno $alumno)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|unique:alumnos,email,' . $alumno->id,
+            'edad' => 'required|integer|min:1',
+        ]);
+
+        $alumno->update($request->all());
+
+        return redirect()->route('alumnos.index')->with('success', 'Alumno actualizado correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Alumno $alumno)
     {
-        //
+        $alumno->delete();
+        return redirect()->route('alumnos.index')->with('success', 'Alumno eliminado correctamente.');
     }
 }
