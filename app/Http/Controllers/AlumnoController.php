@@ -7,76 +7,49 @@ use Illuminate\Http\Request;
 
 class AlumnoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        $alumnos = Alumno::paginate(5); //Requisito de paginación
+        $alumnos = Alumno::paginate(5);
         return view('alumnos.index', compact('alumnos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('alumnos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
-        //Validamos los datos
+        // Validamos usando los archivos de traducción por defecto de Laravel
         $request->validate([
             'nombre' => 'required|string|min:3|max:255',
             'apellido' => 'required|string|max:255',
-            'email' => 'required|email|unique:alumnos,email,' . ($alumno->id ?? ''),
+            'email' => 'required|email|unique:alumnos,email',
             'edad' => 'required|integer|min:1|max:120',
-        ], [
-            'nombre.required' => 'El nombre es obligatorio.',
-            'nombre.min' => 'El nombre debe tener al menos 3 caracteres.',
-
         ]);
-        //Creamos el alumno en la base de datos
+
         Alumno::create($request->all());
 
-        //Redirigimos con un mensaje de confirmación
         return redirect()->route('alumnos.index')
             ->with('success', __('messages.success_create'));
-
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Alumno $alumno)
     {
         return view('alumnos.edit', compact('alumno'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Alumno $alumno)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|min:3|max:255',
             'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:alumnos,email,' . $alumno->id,
-            'edad' => 'required|integer|min:1',
+            'edad' => 'required|integer|min:1|max:120',
         ]);
-
 
         $alumno->update($request->all());
 
@@ -84,12 +57,12 @@ class AlumnoController extends Controller
             ->with('success', __('messages.success_update'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Alumno $alumno)
     {
         $alumno->delete();
-        return redirect()->route('alumnos.index')->with('success', 'Alumno eliminado correctamente.');
+
+        // CORRECCIÓN: Usamos la clave de traducción para el borrado
+        return redirect()->route('alumnos.index')
+            ->with('success', __('messages.success_delete'));
     }
 }
