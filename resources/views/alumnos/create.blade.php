@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Añadir Nuevo Alumno') }}
+            {{ __('messages.add_student') }}
         </h2>
     </x-slot>
 
@@ -14,19 +14,38 @@
                     <div class="grid grid-cols-1 gap-4">
                         <div>
                             <label class="block font-medium text-sm text-gray-700">{{ __('messages.name') }}</label>
-                            <input type="text" name="nombre" class="w-full border-gray-300 rounded-md shadow-sm" required>
+                            <input type="text" name="nombre" value="{{ old('nombre') }}"
+                                   class="w-full border-gray-300 rounded-md shadow-sm @error('nombre') border-red-500 @enderror">
+                            @error('nombre')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
+
                         <div>
                             <label class="block font-medium text-sm text-gray-700">{{ __('messages.surname') }}</label>
-                            <input type="text" name="apellido" class="w-full border-gray-300 rounded-md shadow-sm" required>
+                            <input type="text" name="apellido" value="{{ old('apellido') }}"
+                                   class="w-full border-gray-300 rounded-md shadow-sm @error('apellido') border-red-500 @enderror">
+                            @error('apellido')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
+
                         <div>
-                            <label class="block font-medium text-sm text-gray-700">Email</label>
-                            <input type="email" name="email" class="w-full border-gray-300 rounded-md shadow-sm" required>
+                            <label class="block font-medium text-sm text-gray-700">{{ __('messages.email') }}</label>
+                            <input type="email" name="email" value="{{ old('email') }}"
+                                   class="w-full border-gray-300 rounded-md shadow-sm @error('email') border-red-500 @enderror">
+                            @error('email')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
+
                         <div>
                             <label class="block font-medium text-sm text-gray-700">{{ __('messages.age') }}</label>
-                            <input type="number" name="edad" class="w-full border-gray-300 rounded-md shadow-sm" required>
+                            <input type="number" name="edad" value="{{ old('edad') }}"
+                                   class="w-full border-gray-300 rounded-md shadow-sm @error('edad') border-red-500 @enderror">
+                            @error('edad')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
 

@@ -31,10 +31,13 @@ class AlumnoController extends Controller
     {
         //Validamos los datos
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'nombre' => 'required|string|min:3|max:255',
             'apellido' => 'required|string|max:255',
-            'email' => 'required|email|unique:alumnos,email',
-            'edad' => 'required|integer|min:1',
+            'email' => 'required|email|unique:alumnos,email,' . ($alumno->id ?? ''),
+            'edad' => 'required|integer|min:1|max:120',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.min' => 'El nombre debe tener al menos 3 caracteres.',
 
         ]);
         //Creamos el alumno en la base de datos
