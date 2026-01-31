@@ -29,7 +29,20 @@ class AlumnoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validamos los datos
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|unique:alumnos,email',
+            'edad' => 'required|integer|min:1',
+        ]);
+
+        //Creamos el alumno en la base de datos
+        Alumno::create($request->all());
+
+        //Redirigimos con un mensaje de confirmación
+        return redirect()->route('alumnos.index')
+            ->with('success', 'Alumno creado correctamente.');
     }
 
     /**
