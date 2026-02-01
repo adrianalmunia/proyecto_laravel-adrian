@@ -20,8 +20,8 @@ Sigue estos pasos para poner en marcha el proyecto en tu entorno local:
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone <url-de-tu-repositorio>
-   cd <nombre-de-la-carpeta>
+   git clone <https://github.com/adrianalmunia/proyecto_laravel-adrian.git>
+   cd <proyecto_laravel-adrian>
    ```
 2. **Instalar dependencias:**
 
