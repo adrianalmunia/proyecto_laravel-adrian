@@ -1,59 +1,69 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🎓 Sistema de Gestión de Alumnos - Laravel
 
-## About Laravel
+Este es un proyecto académico desarrollado en **Laravel 11** para la gestión integral de alumnos. El sistema incluye autenticación de usuarios, operaciones CRUD, paginación, carga de datos de prueba y soporte multiidioma.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Requisitos Cubiertos (Basado en el PDF)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **CRUD Completo:** Gestión de alumnos con operaciones de Crear, Leer, Actualizar y Eliminar.
+- **Autenticación:** Sistema de acceso seguro implementado con Laravel Breeze.
+- **Internacionalización (i18n):** Traducción dinámica de toda la interfaz y mensajes de validación a **Español, Inglés y Francés**.
+- **Validación Avanzada:** Feedback visual de errores en los formularios y persistencia de datos mediante la función `old()`.
+- **UX/UI:** Mensajes de confirmación y alertas integradas para mejorar la experiencia de usuario.
+- **Base de Datos:** Estructura mediante migraciones y carga de datos masiva con Seeders y Factories.
+- **Paginación:** Configurada para mostrar 5 registros por página, facilitando la navegación.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Instalación y Configuración
 
-## Learning Laravel
+Sigue estos pasos para poner en marcha el proyecto en tu entorno local:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+1. **Clonar el repositorio:**
+   ```bash
+   git clone <url-de-tu-repositorio>
+   cd <nombre-de-la-carpeta>
+   ```
+2. **Instalar dependencias:**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+  ```bash
+    composer install
+    npm install && npm run build
+  ```
+3. **Configurar el entorno:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Duplicar el archivo de ejemplo: 
+``` cp .env.example .env ```
 
-### Premium Partners
+Generar la clave única de la aplicación:
+```php artisan key:generate ``` 
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Configurar los parámetros de tu base de datos local en el archivo .env.
 
-## Contributing
+Ejecutar Migraciones y Seeders: Este comando preparará las tablas y cargará 21 registros de alumnos (1 manual y 20 aleatorios) más un usuario administrador.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+``` php artisan migrate:fresh --seed ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Iniciar el servidor:
+``` php artisan serve ```
 
-## Security Vulnerabilities
+ ## 🔐 Acceso al Sistema
+Para acceder rápidamente al panel de gestión, utiliza las credenciales por defecto generadas por el Seeder:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Email: admin@admin.com
 
-## License
+Password: password 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ ## 📂 Estructura de Idiomas
+El sistema detecta el idioma seleccionado y consulta los siguientes diccionarios:
+
+lang/es/: Castellano
+
+lang/en/: Inglés
+
+lang/fr/: Francés
+
+Desarrollado por: Adrián Almunia
+
+Fecha de finalización: 1 de febrero de 2026
